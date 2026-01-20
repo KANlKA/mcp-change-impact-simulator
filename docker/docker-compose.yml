@@ -1,48 +1,40 @@
-version: '3.8'
-
 services:
   change-impact-simulator:
     build:
       context: ..
       dockerfile: docker/Dockerfile
+
     container_name: change-impact-simulator-mcp
     restart: unless-stopped
-    
-    # Environment variables
+
     environment:
-      - CONFIG_DIR=${CONFIG_DIR:-/configs}
-      - INDUSTRY_MODE=${INDUSTRY_MODE:-general}
-      - RISK_THRESHOLD=${RISK_THRESHOLD:-MEDIUM}
-      - ENABLE_ESCALATION=${ENABLE_ESCALATION:-true}
-      - LOG_LEVEL=${LOG_LEVEL:-INFO}
-    
-    # Volume mounts for config
+      CONFIG_DIR: /app/config
+      INDUSTRY_MODE: general
+      RISK_THRESHOLD: MEDIUM
+      ENABLE_ESCALATION: "true"
+      LOG_LEVEL: INFO
+
     volumes:
-      - ${CUSTOM_CONFIG_DIR:-./custom-configs}:/configs:ro
       - ./logs:/app/logs
-    
-    # Stdin/stdout for MCP communication
+
     stdin_open: true
     tty: true
-    
-    # Resource limits
+
     deploy:
       resources:
         limits:
-          cpus: '0.5'
+          cpus: "0.5"
           memory: 512M
         reservations:
-          cpus: '0.25'
+          cpus: "0.25"
           memory: 256M
-    
-    # Logging
+
     logging:
-      driver: "json-file"
+      driver: json-file
       options:
         max-size: "10m"
         max-file: "3"
-    
-    # Networks
+
     networks:
       - mcp-network
 
