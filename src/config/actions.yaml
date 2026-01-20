@@ -1,0 +1,68 @@
+manual_review_required:
+  type: "ADVISORY"
+  description: "High-risk change requires manual review"
+  trigger_conditions:
+    - "risk_level: HIGH"
+    - "risk_level: CRITICAL"
+  message_template: |
+    ⚠️  MANUAL REVIEW REQUIRED
+    
+    This change has been flagged as high-risk and requires human review before proceeding.
+    
+    Risk Level: {risk_level}
+    Change: {change_description}
+    
+    Please consult with your team lead or SRE before executing this change.
+    
+    Note: This is an advisory system. No automation will be triggered.
+
+change_caution_notice:
+  type: "ADVISORY"
+  description: "Medium-risk change requires caution"
+  trigger_conditions:
+    - "risk_level: MEDIUM"
+  message_template: |
+    ⚡ CAUTION RECOMMENDED
+    
+    This change carries moderate risk. Please review the safeguards below:
+    
+    {safeguards}
+    
+    Proceed with caution and monitoring.
+
+informational_only:
+  type: "ADVISORY"
+  description: "Low-risk change, informational response"
+  trigger_conditions:
+    - "risk_level: LOW"
+  message_template: |
+    ✅ LOW RISK CHANGE
+    
+    This change is considered low-risk. Standard safeguards apply:
+    
+    {safeguards}
+    
+    Proceed with normal operational procedures.
+
+knowledge_response:
+  type: "INFORMATIONAL"
+  description: "Provide knowledge base information"
+  trigger_conditions:
+    - "intent: knowledge_query"
+  message_template: |
+    📚 Knowledge Base Information
+    
+    {knowledge_content}
+
+validation_response:
+  type: "ADVISORY"
+  description: "Validate change request"
+  trigger_conditions:
+    - "intent: change_validation"
+  message_template: |
+    ✓ Change Validation
+    
+    Pattern: {pattern_name}
+    Risk: {risk_level}
+    
+    {validation_details}

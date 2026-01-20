@@ -1,0 +1,48 @@
+CRITICAL:
+  severity: 4
+  description: "Immediate risk to production systems or data integrity"
+  action: "BLOCK - Require executive approval"
+  response_time: "Immediate escalation"
+  examples:
+    - "Deleting production database"
+    - "Disabling all replicas"
+    - "Removing all backups"
+
+HIGH:
+  severity: 3
+  description: "Significant risk of service disruption or data loss"
+  action: "MANUAL_REVIEW - Senior engineer approval required"
+  response_time: "Within 1 hour"
+  examples:
+    - "Reducing replicas to 1"
+    - "Major database configuration change"
+    - "Broad network rule changes"
+  
+MEDIUM:
+  severity: 2
+  description: "Moderate risk with potential for issues"
+  action: "REVIEW_RECOMMENDED - Team lead notification"
+  response_time: "Within 4 hours"
+  examples:
+    - "Backup policy changes"
+    - "Feature flag enablement"
+    - "Auto-scaling threshold adjustments"
+
+LOW:
+  severity: 1
+  description: "Minimal risk, standard operational change"
+  action: "INFORMATIONAL - Proceed with standard safeguards"
+  response_time: "Next business day"
+  examples:
+    - "Increasing replicas"
+    - "Adding monitoring"
+    - "Documentation updates"
+
+UNKNOWN:
+  severity: 0
+  description: "Risk cannot be determined"
+  action: "MANUAL_REVIEW - Cannot assess automatically"
+  response_time: "Within 2 hours"
+  examples:
+    - "Unrecognized change pattern"
+    - "Custom or novel change"

@@ -1,0 +1,95 @@
+impact_analysis:
+  description: "User wants to understand the impact of a change"
+  keywords:
+    - "what happens"
+    - "impact"
+    - "effect"
+    - "consequence"
+    - "if I"
+    - "result of"
+  actions:
+    - "search_knowledge"
+    - "analyze_change"
+  response_template: |
+    Based on the analysis:
+    
+    Risk Level: {risk_level}
+    
+    Impact:
+    {impacts}
+    
+    Safe Conditions:
+    {safe_conditions}
+    
+    Recommended Safeguards:
+    {safeguards}
+
+risk_review:
+  description: "User wants to know the risk level of a change"
+  keywords:
+    - "risk"
+    - "safe"
+    - "dangerous"
+    - "risky"
+    - "should I"
+  actions:
+    - "analyze_change"
+    - "create_review_task"
+  response_template: |
+    Risk Assessment:
+    
+    Risk Level: {risk_level}
+    Severity: {severity}
+    
+    Required Action: {action}
+    
+    {advisory_message}
+
+change_validation:
+  description: "User wants to validate if a change is appropriate"
+  keywords:
+    - "can I"
+    - "is it okay"
+    - "validate"
+    - "check"
+    - "verify"
+  actions:
+    - "analyze_change"
+    - "search_knowledge"
+  response_template: |
+    Validation Result:
+    
+    Change Pattern: {pattern}
+    Risk Level: {risk_level}
+    
+    Recommendations:
+    {safeguards}
+
+knowledge_query:
+  description: "User wants to learn about best practices"
+  keywords:
+    - "what is"
+    - "how does"
+    - "explain"
+    - "best practice"
+    - "recommendation"
+  actions:
+    - "search_knowledge"
+  response_template: |
+    Knowledge Base Results:
+    
+    {knowledge_results}
+
+supported_changes_query:
+  description: "User wants to know what changes are supported"
+  keywords:
+    - "what changes"
+    - "supported"
+    - "can you analyze"
+    - "what can you"
+  actions:
+    - "list_supported_changes"
+  response_template: |
+    Supported Change Types:
+    
+    {supported_changes}

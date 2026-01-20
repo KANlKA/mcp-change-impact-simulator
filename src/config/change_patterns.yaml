@@ -1,0 +1,136 @@
+replica_scale_down:
+  description: "Reducing the number of service replicas"
+  keywords: ["reduce replicas", "scale down", "decrease replicas", "fewer replicas"]
+  risk_level: "HIGH"
+  impacts:
+    - "Reduced fault tolerance"
+    - "Increased risk of service outage"
+    - "Single point of failure if reduced to 1"
+    - "Potential performance degradation under load"
+  safe_conditions:
+    - "Low traffic window (off-peak hours)"
+    - "Non-critical service"
+    - "Temporary testing scenario"
+    - "Adequate monitoring in place"
+  safeguards:
+    - "Execute during off-peak hours"
+    - "Enable enhanced health checks"
+    - "Have rollback plan ready"
+    - "Monitor error rates closely"
+    - "Keep auto-scaling enabled if available"
+  example: "Reducing replicas from 3 to 1"
+
+replica_scale_up:
+  description: "Increasing the number of service replicas"
+  keywords: ["increase replicas", "scale up", "add replicas", "more replicas"]
+  risk_level: "LOW"
+  impacts:
+    - "Improved fault tolerance"
+    - "Better load distribution"
+    - "Increased resource costs"
+    - "Potential network overhead"
+  safe_conditions:
+    - "Adequate infrastructure capacity"
+    - "Proper load balancer configuration"
+  safeguards:
+    - "Verify infrastructure capacity"
+    - "Monitor resource utilization"
+    - "Check load balancer health"
+  example: "Increasing replicas from 2 to 5"
+
+backup_policy_change:
+  description: "Modifying backup frequency or retention"
+  keywords: ["backup", "snapshot", "retention", "backup frequency"]
+  risk_level: "MEDIUM"
+  impacts:
+    - "Changes to RPO (Recovery Point Objective)"
+    - "Potential data loss window changes"
+    - "Storage cost impact"
+    - "Compliance implications"
+  safe_conditions:
+    - "Compliance requirements reviewed"
+    - "Storage capacity validated"
+    - "Stakeholder approval obtained"
+  safeguards:
+    - "Review compliance requirements"
+    - "Test restore procedures"
+    - "Document retention policy"
+    - "Notify stakeholders"
+  example: "Changing backup frequency from daily to weekly"
+
+feature_flag_enable:
+  description: "Enabling a feature flag"
+  keywords: ["enable feature", "turn on flag", "activate feature"]
+  risk_level: "MEDIUM"
+  impacts:
+    - "New code path execution"
+    - "Potential performance changes"
+    - "User experience changes"
+    - "Possible unexpected behavior"
+  safe_conditions:
+    - "Feature tested in staging"
+    - "Gradual rollout capability"
+    - "Monitoring dashboards ready"
+  safeguards:
+    - "Use gradual rollout (canary/blue-green)"
+    - "Monitor error rates and latency"
+    - "Have kill switch ready"
+    - "Test in staging first"
+  example: "Enabling new authentication feature"
+
+database_config_change:
+  description: "Modifying database configuration"
+  keywords: ["database config", "db settings", "connection pool", "query timeout"]
+  risk_level: "HIGH"
+  impacts:
+    - "Query performance changes"
+    - "Connection behavior changes"
+    - "Potential application errors"
+    - "Data consistency risks"
+  safe_conditions:
+    - "Change tested in staging"
+    - "Database backups current"
+    - "Low traffic period"
+  safeguards:
+    - "Test in non-production first"
+    - "Take database backup"
+    - "Have rollback procedure"
+    - "Monitor query performance"
+  example: "Changing connection pool size"
+
+network_rule_change:
+  description: "Modifying firewall or security group rules"
+  keywords: ["firewall", "security group", "network rule", "port", "access control"]
+  risk_level: "HIGH"
+  impacts:
+    - "Service accessibility changes"
+    - "Security posture changes"
+    - "Potential connectivity issues"
+  safe_conditions:
+    - "Security review completed"
+    - "Change documented"
+    - "Testing plan in place"
+  safeguards:
+    - "Review security implications"
+    - "Test connectivity after change"
+    - "Document all changes"
+    - "Have rollback ready"
+  example: "Opening port 443 to new IP range"
+
+autoscaling_threshold_change:
+  description: "Modifying auto-scaling thresholds"
+  keywords: ["autoscaling", "scaling threshold", "scale trigger", "cpu threshold"]
+  risk_level: "MEDIUM"
+  impacts:
+    - "Scaling behavior changes"
+    - "Resource utilization changes"
+    - "Cost implications"
+    - "Performance characteristics changes"
+  safe_conditions:
+    - "Historical metrics analyzed"
+    - "Cost impact assessed"
+  safeguards:
+    - "Analyze historical usage patterns"
+    - "Set conservative thresholds"
+    - "Monitor scaling events"
+  example: "Changing CPU threshold from 70% to 85%"

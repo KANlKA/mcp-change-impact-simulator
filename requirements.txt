@@ -1,0 +1,12 @@
+# MCP Server Core
+mcp>=0.9.0
+
+# Configuration parsing
+pyyaml>=6.0.1
+
+# Async support
+asyncio>=3.4.3
+
+# Optional: Enhanced features
+python-json-logger>=2.0.7
+python-dateutil>=2.8.2

@@ -1,0 +1,48 @@
+redundancy_principles:
+  - title: "Replica Count and Fault Tolerance"
+    content: "Reducing replicas reduces fault tolerance. Each replica provides redundancy against failures."
+    category: "High Availability"
+    
+  - title: "Single Replica SPOF"
+    content: "Single replica introduces a Single Point of Failure (SPOF). No redundancy means any failure causes complete service outage."
+    category: "High Availability"
+    
+  - title: "Minimum Replicas for HA"
+    content: "For high availability, maintain at least 3 replicas to survive 1 failure while maintaining quorum."
+    category: "High Availability"
+
+backup_principles:
+  - title: "Backup Frequency Impact"
+    content: "Backup frequency directly impacts RPO (Recovery Point Objective) and RTO (Recovery Time Objective). Less frequent backups = more potential data loss."
+    category: "Data Protection"
+    
+  - title: "Backup Retention Policy"
+    content: "Backup retention must balance storage costs with compliance and recovery requirements."
+    category: "Data Protection"
+
+scaling_principles:
+  - title: "Horizontal vs Vertical Scaling"
+    content: "Horizontal scaling (add nodes) improves availability. Vertical scaling (bigger nodes) has limits and SPOFs."
+    category: "Scalability"
+    
+  - title: "Auto-scaling Thresholds"
+    content: "Auto-scaling thresholds should trigger before resource exhaustion. Recommend 70-80% utilization triggers."
+    category: "Scalability"
+
+network_principles:
+  - title: "Load Balancer Configuration"
+    content: "Load balancers must health-check backends. Unhealthy backends should be removed from rotation."
+    category: "Networking"
+    
+  - title: "DNS TTL Impact"
+    content: "Low DNS TTL enables faster failover but increases DNS query load. Balance based on change frequency."
+    category: "Networking"
+
+monitoring_principles:
+  - title: "Alerting Best Practices"
+    content: "Alerts should be actionable, have clear severity levels, and include runbook links."
+    category: "Observability"
+    
+  - title: "SLO/SLI Definition"
+    content: "Define SLOs based on user experience. Track SLIs continuously to measure against SLOs."
+    category: "Observability"

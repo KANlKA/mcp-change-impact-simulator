@@ -1,0 +1,103 @@
+approval_workflow:
+  description: >
+    Policy-based approval workflow for infrastructure and operational changes.
+    This workflow defines mandatory human review stages based on assessed risk
+    levels. All approvals are advisory only; no automation or execution is
+    triggered by this system.
+
+  stages:
+    - name: "Team Lead Review"
+      description: >
+        Initial technical validation of the proposed change. Focuses on
+        correctness, impact awareness, and rollback readiness.
+      required_for:
+        - MEDIUM
+        - HIGH
+        - CRITICAL
+      auto_approve: false
+      approvers:
+        - role: "team_lead"
+          responsibility: "Validate change intent and safeguards"
+
+    - name: "Senior Engineer Review"
+      description: >
+        Deep technical risk assessment for changes with potential service
+        disruption or data integrity implications.
+      required_for:
+        - HIGH
+        - CRITICAL
+      auto_approve: false
+      approvers:
+        - role: "senior_engineer"
+          responsibility: "Assess failure modes and blast radius"
+
+    - name: "SRE / Reliability Review"
+      description: >
+        Reliability and operational readiness review. Ensures observability,
+        rollback plans, and resilience standards are met before high-risk
+        production changes.
+      required_for:
+        - CRITICAL
+      auto_approve: false
+      approvers:
+        - role: "sre_oncall"
+          responsibility: "Validate production safety and monitoring"
+
+  escalation_policy:
+    enabled: true
+    rules:
+      - condition: "risk_level == CRITICAL"
+        action: "Immediate escalation to SRE and leadership"
+        response_time: "Immediate"
+
+      - condition: "risk_level == HIGH"
+        action: "Escalate to senior engineering review"
+        response_time: "Within 1 hour"
+
+      - condition: "risk_level == MEDIUM"
+        action: "Notify team lead"
+        response_time: "Within 4 hours"
+
+  workflow_metadata:
+    advisory_only: true
+    execution_policy: "NO_AUTOMATION"
+    ticket_creation: false
+    audit_required: true
+    retention_days: 90
+
+  messaging:
+    approval_request_template: |
+      🔍 APPROVAL REQUIRED
+      
+      Change Description:
+      {change_description}
+      
+      Assessed Risk Level: {risk_level}
+      
+      Required Approval Stages:
+      {approval_stages}
+      
+      Note:
+      This is an advisory workflow. No change will be executed automatically.
+      Human approval is required before proceeding.
+
+    approval_complete_template: |
+      ✅ APPROVAL WORKFLOW COMPLETE
+      
+      Workflow ID: {workflow_id}
+      Final Risk Level: {risk_level}
+      
+      All required review stages have been completed.
+      Proceed according to standard operational procedures.
+
+    rejection_template: |
+      ❌ CHANGE NOT APPROVED
+      
+      Workflow ID: {workflow_id}
+      Risk Level: {risk_level}
+      
+      Reason:
+      {rejection_reason}
+      
+      Recommendation:
+      Review safeguards and revise the change before resubmission.
