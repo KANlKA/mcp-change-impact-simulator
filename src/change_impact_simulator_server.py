@@ -17,7 +17,7 @@ import yaml
 import os
 from pathlib import Path
 from typing import Any, Dict, List
-from datetime import datetime
+from datetime import datetime, UTC
 from collections import defaultdict
 
 from mcp.server import Server
@@ -32,7 +32,7 @@ class MetricsCollector:
         self.analyses = []
         self.risk_distribution = defaultdict(int)
         self.pattern_usage = defaultdict(int)
-        self.start_time = datetime.utcnow()
+        self.start_time = datetime.now(UTC)
     
     def record_analysis(self, analysis: Dict[str, Any]):
         """Record a change analysis"""

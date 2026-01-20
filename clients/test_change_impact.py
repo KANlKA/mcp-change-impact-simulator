@@ -41,7 +41,8 @@ def test_knowledge_search():
         for result in results[:2]:  # Show first 2 results
             print(f"  - {result['title']}")
             print(f"    Category: {result['category']}")
-            print(f"    Relevance: {result['relevance']}")
+            print(f"    Score: {result.get('score', 'N/A')}")
+
 
 
 def test_analyze_change():
