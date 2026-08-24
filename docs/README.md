@@ -2,9 +2,6 @@
 
 > **A read-only, advisory MCP server that helps users understand risk and impact of system changes before execution.**
 
-[![MCP](https://img.shields.io/badge/MCP-Compatible-blue)](https://modelcontextprotocol.io)
-[![Python](https://img.shields.io/badge/Python-3.11+-green)](https://python.org)
-[![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 
 ## 🎯 Overview
 
